@@ -4,8 +4,8 @@ const transactionService = require("./transaction.service");
 const authorizeJWT = require("../middleware/authorizeJWT");
 const adminAuthorization = require("../middleware/adminAuthorization");
 
-// router.post("/borrow", authorizeJWT, async (req, res) => {
-router.post("/borrow/:id", async (req, res) => {
+router.post("/borrow", authorizeJWT, async (req, res) => {
+  // router.post("/borrow/:id", async (req, res) => {
   // buatlah endpoint POST /transaction/borrow yang akan digunakan untuk meminjam buku. Endpoint ini akan memanggil fungsi borrowBook yang telah dibuat sebelumnya.
   try {
     const { itemId, quantityBorrowed } = req.body;
@@ -25,8 +25,8 @@ router.post("/borrow/:id", async (req, res) => {
   }
 });
 
-// router.get("/", adminAuthorization, async (req, res) => {
-router.get("/", async (req, res) => {
+router.get("/", adminAuthorization, async (req, res) => {
+  // router.get("/", async (req, res) => {
   // buatlah endpoint GET /transaction yang akan digunakan untuk mengambil seluruh data transaksi. Endpoint ini akan memanggil fungsi findTransactions yang telah dibuat sebelumnya.
   try {
     const transactions = await transactionService.getAllTransactions();
@@ -36,8 +36,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/user/:id", authorizeJWT,async (req, res) => {
-router.get("/user/:id", async (req, res) => {
+router.get("/user/:id", authorizeJWT, async (req, res) => {
+  // router.get("/user/:id", async (req, res) => {
   // buatlah endpoint GET /transaction/user yang akan digunakan untuk mengambil seluruh data transaksi yang dilakukan oleh user yang sedang login. Endpoint ini akan memanggil fungsi findUserTransactions yang telah dibuat sebelumnya.
   try {
     const userId = req.params.id; // Mengambil userId dari token JWT nanti perlu di benahi nunggu auth
@@ -50,8 +50,8 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
-// router.patch("/verify/:transactionId", adminAuthorization, async (req, res) => {
-router.patch("/verify/:transactionId", async (req, res) => {
+router.patch("/verify/:transactionId", adminAuthorization, async (req, res) => {
+  // router.patch("/verify/:transactionId", async (req, res) => {
   // buatlah endpoint PATCH /transaction/verify/:transactionId yang akan digunakan untuk memverifikasi transaksi. Endpoint ini akan memanggil fungsi verifyTransaction yang telah dibuat sebelumnya.
   try {
     const { transactionId } = req.params;
@@ -69,8 +69,8 @@ router.patch("/verify/:transactionId", async (req, res) => {
   }
 });
 
-// router.post("/return/:transactionId", authorizeJWT, async (req, res) => {
-router.post("/return/:transactionId", async (req, res) => {
+router.post("/return/:transactionId", authorizeJWT, async (req, res) => {
+  // router.post("/return/:transactionId", async (req, res) => {
   // buatlah endpoint POST /transaction/return/:transactionId yang akan digunakan untuk mengembalikan buku. Endpoint ini akan memanggil fungsi returnBook yang telah dibuat sebelumnya.
   try {
     const { transactionId } = req.params;

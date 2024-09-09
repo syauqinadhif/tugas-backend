@@ -20,7 +20,6 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   // buatlah endpoint POST /auth/login yang akan digunakan untuk login. Endpoint ini akan memanggil fungsi loginUser yang telah dibuat sebelumnya.
   try {
-
     const { username, password } = req.body;
     const token = await authService.login(username, password);
 
