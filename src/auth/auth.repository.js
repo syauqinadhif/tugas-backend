@@ -1,11 +1,36 @@
-const prisma = require("../db")
+const prisma = require("../db");
 
 async function createUser(userData) {
-    // buatlah fungsi createUser yang menerima satu parameter userData. Fungsi ini akan memasukkan data user baru ke dalam database.
+  try {
+    const newUser = await prisma.user.create({
+      data: userData,
+    });
+    return newUser;
+  } catch (error) {
+    throw new Error("Failed to create user");
+  }
 }
 
 async function findUserByUsername(username) {
-    // buatlah fungsi findUserByUsername yang menerima satu parameter username. Fungsi ini akan mengembalikan data user berdasarkan username yang diberikan.
+  try {
+    const user = await prisma.user.findUnique({
+      where: { username: username }, // Hanya mengirimkan string untuk username
+    });
+    return user;
+  } catch (error) {
+    throw new Error("Failed to find user by username");
+  }
 }
 
-module.exports = { createUser, findUserByUsername };
+async function findUserByEmail(email) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email: email }, // Hanya mengirimkan string untuk email
+    });
+    return user;
+  } catch (error) {
+    throw new Error("Failed to find user by email");
+  }
+}
+
+module.exports = { createUser, findUserByUsername, findUserByEmail };
