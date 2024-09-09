@@ -4,7 +4,11 @@ async function insertUser(userData) {
   // buatlah fungsi insertUser yang menerima satu parameter userData. Fungsi ini akan memasukkan data user baru ke dalam database.
   try {
     const newUser = await prisma.user.create({
-      data: userData,
+      data: {
+        username: userData.username,
+        email: userData.email,
+        password: userData.password,
+      },
     });
     return newUser;
   } catch (error) {
