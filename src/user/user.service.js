@@ -11,7 +11,7 @@ const { use } = require("./user.controller");
 async function createUser(newUserData) {
   // Buatlah sebuah fungsi asinkron bernama createUser yang menerima satu parameter newUserData.Fungsi ini harus melakukan hal - hal berikut:
 
-  const hashedPassword = bcrypt.hash(newUserData.password, 10);
+  const hashedPassword = await bcrypt.hash(newUserData.password, 10);
   newUserData.password = hashedPassword;
   const newUser = await insertUser(newUserData);
   return newUser;
@@ -46,7 +46,7 @@ async function editUserById(id, userData) {
   // Memanggil fungsi editUser dengan id dan userData sebagai argumen untuk mengubah data pengguna di dalam database.
   // Mengembalikan objek updatedUser yang merupakan hasil dari pemanggilan fungsi editUser.
   if (userData.password) {
-    const hashedPassword = bcrypt.hash(userData.password, 10);
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
     userData.password = hashedPassword;
   }
 
